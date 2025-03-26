@@ -25,20 +25,22 @@ jobs:
         with:
           url: ${{ matrix.url }}
       - name: test
+        env:
+          DYLD_FRAMEWORK_PATH: "~/jsc"
+          DYLD_LIBRARY_PATH: "~/jsc"
         run: |
           curl -L -o "jsc.zip" "${{ matrix.url }}"
           unzip -q "jsc.zip" -d jsc-tmp
 
-          mkdir -p jsc/Release
+          mkdir -p ~/jsc/Release
 
-          cp jsc-tmp/Release/jsc jsc/jsc
-          cp -r jsc-tmp/Release/JavaScriptCore.framework jsc/JavaScriptCore.framework
-          cp run-jsc.sh jsc/run-jsc.sh
+          cp jsc-tmp/Release/jsc ~/jsc/jsc
+          cp -r jsc-tmp/Release/JavaScriptCore.framework ~/jsc/JavaScriptCore.framework
 
-          ls -lh jsc
+          ls -lh ~/jsc
 
           # bash ./jsc/run-jsc.sh ./test.js
           # ./jsc/jsc ./test.js
 
-          cd jsc
+          cd ~/jsc
           ./jsc ./test.js
