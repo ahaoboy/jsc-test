@@ -1,0 +1,30 @@
+name: build
+
+permissions:
+  contents: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  push:
+
+jobs:
+  test-release:
+    strategy:
+      matrix:
+        include:
+          - url: "https://s3-us-west-2.amazonaws.com/minified-archives.webkit.org/mac-sonoma-x86_64%20arm64-release/@main.zip"
+            os: macos-14
+          - url: "https://s3-us-west-2.amazonaws.com/minified-archives.webkit.org/mac-ventura-x86_64%20arm64-release/@main.zip"
+            os: macos-13
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: easy-install/easy-setup@v1
+        with:
+          url: ${{ matrix.url }}
+      - name: test
+        run: |
+          which jsc
+          jsc ./test.js
