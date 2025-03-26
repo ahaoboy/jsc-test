@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-DYLD_FRAMEWORK_PATH="${dirname}/bin" DYLD_LIBRARY_PATH="${dirname}/bin" "${dirname}/bin/jsc" "$@"
+SCRIPT_DIR="$(realpath "$(dirname "$0")")"
+
+DYLD_FRAMEWORK_PATH="${SCRIPT_DIR}/bin" DYLD_LIBRARY_PATH="${SCRIPT_DIR}/bin" "${SCRIPT_DIR}/bin/jsc" "$@"
