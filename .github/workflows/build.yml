@@ -32,15 +32,17 @@ jobs:
           curl -L -o "jsc.zip" "${{ matrix.url }}"
           unzip -q "jsc.zip" -d jsc-tmp
 
-          mkdir -p ~/jsc
+          mkdir -p ~/jsc/bin
 
-          cp jsc-tmp/Release/jsc ~/jsc/jsc
-          cp -r jsc-tmp/Release/JavaScriptCore.framework ~/jsc/JavaScriptCore.framework
+          cp jsc-tmp/Release/jsc ~/jsc/bin/jsc
+          cp -r jsc-tmp/Release/JavaScriptCore.framework ~/jsc/bin/JavaScriptCore.framework
+          cp ./jsc.sh ~/jsc/jsc.sh
+          chmod 777 ~/jsc/jsc.sh
 
-          ls -lh ~/jsc
+          ls -lh ~/jsc/bin
 
-          cd ~/jsc
-          pwd
+          # cd ~/jsc
+          # pwd
 
-          echo "print(1 + 1)" > test.js
-          ./jsc ./test.js
+          # echo "print(1 + 1)" > test.js
+          ~/jsc/jsc ./test.js
