@@ -14,9 +14,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - url: "https://s3-us-west-2.amazonaws.com/minified-archives.webkit.org/mac-sonoma-x86_64%20arm64-release/@main.zip"
+          - url: "https://s3-us-west-2.amazonaws.com/minified-archives.webkit.org/mac-sonoma-x86_64%20arm64-release/292348@main.zip"
             os: macos-14
-          - url: "https://s3-us-west-2.amazonaws.com/minified-archives.webkit.org/mac-ventura-x86_64%20arm64-release/@main.zip"
+          - url: "https://s3-us-west-2.amazonaws.com/minified-archives.webkit.org/mac-ventura-x86_64%20arm64-release/290733@main.zip"
             os: macos-13
     runs-on: ${{ matrix.os }}
     steps:
