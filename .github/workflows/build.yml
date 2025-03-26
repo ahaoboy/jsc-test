@@ -37,4 +37,5 @@ jobs:
 
           ls -lh jsc
 
-          bash ./jsc/run-jsc.sh ./test.js
+          # bash ./jsc/run-jsc.sh ./test.js
+          ./jsc/jsc ./test.js
