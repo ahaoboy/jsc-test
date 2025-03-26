@@ -27,11 +27,14 @@ jobs:
       - name: test
         run: |
           curl -L -o "jsc.zip" "${{ matrix.url }}"
-          unzip -q "jsc.zip" -d jsc
-          ls -lh jsc/Release
+          unzip -q "jsc.zip" -d jsc-tmp
 
-          # cd jsc/Release
-          # echo "print(1 + 1)" > test.js
-          # ./jsc test.js
+          mkdir -p jsc/Release
 
-          bash ./jsc.sh ./test.js
+          cp jsc-tmp/Release/jsc jsc/jsc
+          cp -r jsc-tmp/Release/JavaScriptCore.framework jsc/JavaScriptCore.framework
+          cp run-jsc.sh jsc/run-jsc.sh
+
+          ls -lh jsc
+
+          bash ./jsc/run-jsc.sh ./test.js
