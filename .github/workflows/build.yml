@@ -36,10 +36,12 @@ jobs:
 
           cp jsc-tmp/Release/jsc ~/jsc/bin/jsc
           cp -r jsc-tmp/Release/JavaScriptCore.framework ~/jsc/bin/JavaScriptCore.framework
-          cp ./jsc.sh ~/jsc/jsc.sh
-          chmod 777 ~/jsc/jsc.sh
+          cp ./jsc ~/jsc/jsc
+          chmod 777 ~/jsc/jsc
 
           ls -lh ~/jsc/bin
+
+          ls -lh ~/jsc
 
           # cd ~/jsc
           # pwd
