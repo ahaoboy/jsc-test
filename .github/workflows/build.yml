@@ -26,6 +26,9 @@ jobs:
           url: https://github.com/ahaoboy/jsc-build/releases/tag/v0.1.2
 
       - name: test
+        env:
+          DYLD_FRAMEWORK_PATH: "/Users/runner/.easy-install/jsc/bin"
+          DYLD_LIBRARY_PATH: "/Users/runner/.easy-install/jsc/bin"
         run: |
           which jsc
           jsc test.js
