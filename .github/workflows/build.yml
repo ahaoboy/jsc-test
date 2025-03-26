@@ -29,6 +29,9 @@ jobs:
           curl -L -o "jsc.zip" "${{ matrix.url }}"
           unzip -q "jsc.zip" -d jsc
           ls -lh jsc/Release
-          cd jsc/Release
-          echo "print(1 + 1)" > test.js
-          ./jsc test.js
+
+          # cd jsc/Release
+          # echo "print(1 + 1)" > test.js
+          # ./jsc test.js
+
+          bash ./jsc.sh ./test.js
