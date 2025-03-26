@@ -26,5 +26,9 @@ jobs:
           url: ${{ matrix.url }}
       - name: test
         run: |
-          which jsc
-          jsc ./test.js
+          curl -L -o "jsc.zip" "${{ matrix.url }}"
+          unzip -q "jsc.zip" -d jsc
+          ls -lh jsc/Release
+          cd jsc/Release
+          echo "print(1 + 1)" > test.js
+          ./jsc test.js
