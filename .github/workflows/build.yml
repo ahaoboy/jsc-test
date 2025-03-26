@@ -23,28 +23,34 @@ jobs:
       - uses: actions/checkout@v4
       - uses: easy-install/easy-setup@v1
         with:
-          url: ${{ matrix.url }}
+          url: https://github.com/ahaoboy/jsc-build/releases/tag/v0.1.2
+
       - name: test
-        env:
-          DYLD_FRAMEWORK_PATH: "/Users/runner/jsc"
-          DYLD_LIBRARY_PATH: "/Users/runner/jsc"
         run: |
-          curl -L -o "jsc.zip" "${{ matrix.url }}"
-          unzip -q "jsc.zip" -d jsc-tmp
+          which jsc
+          jsc test.js
 
-          mkdir -p ~/jsc/bin
+      # - name: test
+      #   env:
+      #     DYLD_FRAMEWORK_PATH: "/Users/runner/jsc"
+      #     DYLD_LIBRARY_PATH: "/Users/runner/jsc"
+      #   run: |
+      #     curl -L -o "jsc.zip" "${{ matrix.url }}"
+      #     unzip -q "jsc.zip" -d jsc-tmp
 
-          cp jsc-tmp/Release/jsc ~/jsc/bin/jsc
-          cp -r jsc-tmp/Release/JavaScriptCore.framework ~/jsc/bin/JavaScriptCore.framework
-          cp ./jsc ~/jsc/jsc
-          chmod 777 ~/jsc/jsc
+      #     mkdir -p ~/jsc/bin
 
-          ls -lh ~/jsc/bin
+      #     cp jsc-tmp/Release/jsc ~/jsc/bin/jsc
+      #     cp -r jsc-tmp/Release/JavaScriptCore.framework ~/jsc/bin/JavaScriptCore.framework
+      #     cp ./jsc ~/jsc/jsc
+      #     chmod 777 ~/jsc/jsc
 
-          ls -lh ~/jsc
+      #     ls -lh ~/jsc/bin
 
-          # cd ~/jsc
-          # pwd
+      #     ls -lh ~/jsc
 
-          # echo "print(1 + 1)" > test.js
-          ~/jsc/jsc ./test.js
+      #     # cd ~/jsc
+      #     # pwd
+
+      #     # echo "print(1 + 1)" > test.js
+      #     ~/jsc/jsc ./test.js
